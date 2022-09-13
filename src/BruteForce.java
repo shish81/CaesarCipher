@@ -29,7 +29,8 @@ public class BruteForce {
 			while ((pathToTheFile = scanner.nextLine()).equals("")) {
 				System.out.print("");
 			}
-			if (Files.exists(Path.of(pathToTheFile.replaceAll(" ", "")))) {
+			if (Files.exists(Path.of(pathToTheFile.replaceAll(" ", "")))&&
+					pathToTheFile.toLowerCase().endsWith(".txt")) {
 				creationAfterCaesar = Path.of(pathToTheFile.replaceAll(" ", ""));
 				Path dir = Path.of(Paths.get(creationAfterCaesar.toFile().getAbsolutePath()).getParent() + "\\" +
 						packageBruteForce.replaceAll(" ", ""));

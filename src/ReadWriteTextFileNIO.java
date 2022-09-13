@@ -28,7 +28,8 @@ public class ReadWriteTextFileNIO {
 			while ((pathToTheFile = scanner.nextLine()).equals("")) {
 				System.out.print("");
 			}
-			if (!Files.exists(Path.of(pathToTheFile.replaceAll(" ", "")))) {
+			if (!Files.exists(Path.of(pathToTheFile.replaceAll(" ", "")))&&
+					pathToTheFile.toLowerCase().endsWith(".txt")) {
 				Path path = Path.of(pathToTheFile.replaceAll(" ", ""));
 				writeFilesTxtString(Path.of(pathToTheFile.replaceAll(" ", "")),
 						creationInTextNewFile);
@@ -39,21 +40,26 @@ public class ReadWriteTextFileNIO {
 				break;
 			}
 
-			if (Files.exists(Path.of(pathToTheFile.replaceAll(" ", "")))) {
-				System.out.print("-------------------------------------------------------\n" +
-						"Файл уже существует\n" +
-						"Перезаписать файл, нажмите - \"1\"\n" +
-						"Создать новый файл, нажмите - \"0\"\n");
+			if (Files.exists(Path.of(pathToTheFile.replaceAll(" ", "")))
+					&&	pathToTheFile.toLowerCase().endsWith(".txt")) {
+				System.out.print("""
+						-------------------------------------------------------
+						Файл уже существует
+						Перезаписать файл, нажмите - "1"
+						Создать новый файл, нажмите - "0"
+						""");
 				int command;
 				while (true) {
 					if (scanner.hasNextInt()) {
 						command = scanner.nextInt();
 						if (command >= 0 && command <= 1) {
 							break;
-						} else System.out.println("-------------------------------------------------------\n" +
-								"\"Введите числа из списка действий - \"1\" или \"2 \".\n" +
-								"Перезаписать файл, нажмите - \"1\"\n" +
-								"Создать новый файл, нажмите - \"0\"\n");
+						} else System.out.println("""
+								-------------------------------------------------------
+								"Введите числа из списка действий - "1" или "2 ".
+								Перезаписать файл, нажмите - "1"
+								Создать новый файл, нажмите - "0"
+								""");
 					} else {
 						System.out.println("\"Некорректный ввод.\n" +
 								"Ожидается ввод числа по номеру опций из списка\"." +
@@ -62,7 +68,7 @@ public class ReadWriteTextFileNIO {
 					}
 				}
 				switch (command) {
-					case 1:
+					case 1 -> {
 						Path path = Path.of(pathToTheFile.replaceAll(" ", ""));
 						writeFilesTxtString(Path.of(pathToTheFile.replaceAll(" ", "")),
 								creationInTextNewFile);
@@ -70,12 +76,13 @@ public class ReadWriteTextFileNIO {
 								"Файл \"" + path.getFileName() + "\" успешно перезаписан.\n" +
 								"Путь к файлу: " + path.toAbsolutePath().getParent() + "\\" + path.getFileName() +
 								"\n-------------------------------------------------------");
-						break;
-					case 0:
+					}
+					case 0 -> {
 						System.out.print("-------------------------------------------------------\n" +
 								"Введите новый путь и новое имя к файлу:\n");
 						scanner.nextLine();
 						continue;
+					}
 				}
 				break;
 			} else
