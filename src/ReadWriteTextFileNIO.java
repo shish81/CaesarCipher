@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 import static java.nio.file.Files.readString;
@@ -20,15 +19,17 @@ public class ReadWriteTextFileNIO {
 	}
 
 	public static void writeNewTextFile(String creationInTextNewFile) {
-		System.out.print("-------------------------------------------------------\n" +
-				"Введите путь и имя к файлу в который будет сохранен текст:\n");
+		System.out.print("""
+				-------------------------------------------------------
+				Введите путь и имя к файлу в который будет сохранен текст:
+				""");
 
 		while (true) {
 			String pathToTheFile;
 			while ((pathToTheFile = scanner.nextLine()).equals("")) {
 				System.out.print("");
 			}
-			if (!Files.exists(Path.of(pathToTheFile.replaceAll(" ", "")))&&
+			if (!Files.exists(Path.of(pathToTheFile.replaceAll(" ", ""))) &&
 					pathToTheFile.toLowerCase().endsWith(".txt")) {
 				Path path = Path.of(pathToTheFile.replaceAll(" ", ""));
 				writeFilesTxtString(Path.of(pathToTheFile.replaceAll(" ", "")),
@@ -41,7 +42,7 @@ public class ReadWriteTextFileNIO {
 			}
 
 			if (Files.exists(Path.of(pathToTheFile.replaceAll(" ", "")))
-					&&	pathToTheFile.toLowerCase().endsWith(".txt")) {
+					&& pathToTheFile.toLowerCase().endsWith(".txt")) {
 				System.out.print("""
 						-------------------------------------------------------
 						Файл уже существует
@@ -61,9 +62,10 @@ public class ReadWriteTextFileNIO {
 								Создать новый файл, нажмите - "0"
 								""");
 					} else {
-						System.out.println("\"Некорректный ввод.\n" +
-								"Ожидается ввод числа по номеру опций из списка\"." +
-								"\n-------------------------------------------------------");
+						System.out.println("""
+								"Некорректный ввод.
+								Ожидается ввод числа по номеру опций из списка".
+								-------------------------------------------------------""");
 						scanner.next();
 					}
 				}
@@ -78,16 +80,19 @@ public class ReadWriteTextFileNIO {
 								"\n-------------------------------------------------------");
 					}
 					case 0 -> {
-						System.out.print("-------------------------------------------------------\n" +
-								"Введите новый путь и новое имя к файлу:\n");
+						System.out.print("""
+								-------------------------------------------------------
+								Введите новый путь и новое имя к файлу:
+								""");
 						scanner.nextLine();
 						continue;
 					}
 				}
 				break;
 			} else
-				System.out.println("Путь задан не правильно\n" +
-						"Проверьте правильность написания пути или имя файла и его расширение");
+				System.out.println("""
+						Путь или имя с типом файла, заданы не правильно!
+						Проверьте правильность написания пути или имя файла и его расширение""");
 
 		}
 	}
@@ -111,16 +116,19 @@ public class ReadWriteTextFileNIO {
 					//scanner.close();
 					break;
 				} catch (IOException e) {
-					System.out.print("Файл не найден!\n" +
-							"Проверьте правильность путь к файлу и его имя\n" +
-							"Введите правильный путь и имя, к файлу\n" +
-							"---------------------------------------------------------------\n" +
-							"Введите путь и имя к файлу, из которого будет взят исходный текст\n");
+					System.out.print("""
+							Файл не найден!
+							Проверьте правильность путь к файлу и его имя
+							Введите правильный путь и имя, к файлу
+							---------------------------------------------------------------
+							Введите путь и имя к файлу, из которого будет взят исходный текст
+							""");
 				}
-			} else System.out.println("Файл не найден!\n" +
-					"Проверьте правильность путь к файлу и его имя\n" +
-					"Введите правильный путь и имя, к файлу\n" +
-					"---------------------------------------------------------------");
+			} else System.out.println("""
+					Файл не найден!
+					Проверьте правильность путь к файлу и его имя
+					Введите правильный путь и имя, к файлу
+					---------------------------------------------------------------""");
 		}
 		return sourceTxtFile;
 	}

@@ -1,11 +1,9 @@
 public class Caesar {
-	//Scanner scanner = new Scanner(System.in);//работа с консолью
+	private static final char[] ALPHABET = {'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з',
+			'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
+			'ъ', 'ы', 'ь', 'э', 'ю', 'я', '\n', ' ', '—', '.', ',', '«', '»', '\"', '(', ')', ':', '!',
+			'?', '\u0000', '\r'};
 	public static String alpht = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя —.,\n«»\"()\\:!?";
-//	private static final char[] ALPHABET = alpht.toCharArray();
-	private static final char[] ALPHABET = {'а', 'б', 'в', 'г', 'д', 'е','ё', 'ж', 'з',
-		'и','й','к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
-		'ъ', 'ы', 'ь', 'э','ю', 'я','\n',' ','—','.',',','«','»','\"','(',')',':','!','?','\u0000','\r'};
-
 
 	protected static int keyVerification(int keyVerif) {
 		if (keyVerif < 0) {
@@ -18,13 +16,13 @@ public class Caesar {
 	}
 
 	public static String encryptionTextFile(int key, String sourceText) {
-	//	System.out.println(Caesar.ALPHABET.length);
+		//	System.out.println(Caesar.ALPHABET.length);
 		char[] sourceTextArray = sourceText.toLowerCase().toCharArray();
 		char[] encryptionArray = new char[sourceTextArray.length];
 		for (int sourceTextLoop = 0; sourceTextLoop < sourceTextArray.length; sourceTextLoop++) {
 			for (int alphabetLoop = 0; alphabetLoop < ALPHABET.length; alphabetLoop++) {
 				if (sourceTextArray[sourceTextLoop] == ALPHABET[alphabetLoop]) {
-						encryptionArray[sourceTextLoop] = ALPHABET[(alphabetLoop + key) % ALPHABET.length];
+					encryptionArray[sourceTextLoop] = ALPHABET[(alphabetLoop + key) % ALPHABET.length];
 				}
 			}
 		}
