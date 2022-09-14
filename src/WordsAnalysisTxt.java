@@ -14,8 +14,10 @@ public class WordsAnalysisTxt {
 		System.out.println("Выберете зашифрованный текстовый файл, который будет анализироваться");
 		String stringFileCaesar = ReadWriteTextFileNIO.readSourceTxtFile();
 		Set<String> setWordsToCaesarText = new HashSet<>(); //= 	setStringsOfText(stringFileCaesar);
-		System.out.println("--------------------------------------------------\n" +
-				"Введите число случайных слов, найденных при анализе в шифре, которые не будут учитываться");
+		System.out.println("""
+				-------------------------------------------------------------------------------------------
+				Введите число случайных слов, найденных при анализе в шифре, которые не будут учитываться
+				""");
 		int numberOfRandomWords;
 		while (true) {
 			if (sc.hasNextInt()) {
@@ -49,24 +51,24 @@ public class WordsAnalysisTxt {
 						setWordsToCaesarText.add(s);
 						//equalsOfKey = key;
 						tmp++;
-						if(tmp>printCountWord){
+						if (tmp > printCountWord) {
 							printCountWord = tmp;
 						}
-						if(key>printKey){
+						if (key > printKey) {
 							printKey = key;
 						}
 					}
 				}
 			}
 			if (tmp > numberOfRandomWords) {
-				System.out.printf("По ключу = %d\n",key);
+				System.out.printf("По ключу = %d\n", key);
 				System.out.println("Найдено похожи слов = " + setWordsToCaesarText);
 				System.out.println("Количество слов = " + setWordsToCaesarText.size());
 				System.out.println("--------------------------------------------------");
 			}
 		}
 
-System.out.print("--------------------------------------------------\n" +
+		System.out.print("--------------------------------------------------\n" +
 				"Исходя их анализа, больше всего, сходства есть по ключу - " + printKey + "\n");
 	}
 

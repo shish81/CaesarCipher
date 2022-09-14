@@ -3,17 +3,7 @@ public class Caesar {
 			'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
 			'ъ', 'ы', 'ь', 'э', 'ю', 'я', '\n', ' ', '—', '.', ',', '«', '»', '\"', '(', ')', ':', '!',
 			'?', '\u0000', '\r'};
-	public static String alpht = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя —.,\n«»\"()\\:!?";
-
-	protected static int keyVerification(int keyVerif) {
-		if (keyVerif < 0) {
-			keyVerif = Math.abs(keyVerif);
-			return ALPHABET.length - keyVerif;
-		} else if (keyVerif > ALPHABET.length) {
-			keyVerif -= ALPHABET.length;
-			return keyVerif;
-		} else return keyVerif;
-	}
+	//public static String alpht = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя —.,\n«»\"()\\:!?";
 
 	public static String encryptionTextFile(int key, String sourceText) {
 		//	System.out.println(Caesar.ALPHABET.length);
